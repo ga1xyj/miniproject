@@ -34,23 +34,25 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 	// 게시글 출력
 	@Override
 	public void printAll() {
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		List<Bulletin> list = bDAO.selectAll();
 		for (Bulletin bulletin : list) {
 			System.out.println(bulletin);
 		}
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		choiceClick();
 	}
 
 	// 게시글 선택 메뉴
 	@Override
 	public void choiceClick() {
-		System.out.println("[1.클릭 2.뒤로가기]");
+		System.out.println("[1.선택 2.메뉴]");
 		int menuNo = menuSelect();
 		if (menuNo == 1) {
 			printOne();
 		} else if (menuNo == 2) {
 			return;
+		} else {
+			showInputError();
 		}
 	}
 
@@ -59,15 +61,16 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 	public void printOne() {
 		int boardNumber = inputNumber();
 		Bulletin bulletin = bDAO.selectOne(boardNumber);
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		System.out.println(bulletin);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+
 		// 같은 작성자일시 게시글 수정,삭제 메뉴
 		if (LoginSystem.getLoginInfo().getId().equals(bulletin.getId())) {
 			choiceOption(boardNumber);
 		}
 		// 댓글 전체 출력
-		System.out.println("------------------------------");
-		printComment(boardNumber, bulletin);
+		
+		printComment(boardNumber);
 		commentMenu(boardNumber);
 	}
 
@@ -81,14 +84,15 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 	}
 
 	// 댓글 출력
-	public void printComment(int no, Bulletin bulletin) {
+	public void printComment(int no) {
 		List<BulletinComment> list = bcDAO.selectAll(no);
 		for (BulletinComment bulletinComment : list) {
 			System.out.println(bulletinComment);
-			if(LoginSystem.getLoginInfo().getId().equals(bulletin.getId())) {
+			if(LoginSystem.getLoginInfo().getId().equals(bcDAO.selectOne(no).getId())) {
 			choiceCommentOption(no);
 			}
-		}
+		} 
+		System.out.println("---------------------------------------");
 	}
 
 	// 댓글 작성
@@ -99,7 +103,7 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 
 	// 댓글 메뉴
 	public void commentMenu(int no) {
-		String menu = "[1.댓글 2.뒤로가기]";
+		String menu = "[1.댓글 2.메뉴]";
 		System.out.println(menu);
 		int menuNo = menuSelect();
 		if (menuNo == 1) {
@@ -107,7 +111,9 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 			writeComment(no);
 		} else if (menuNo == 2) {
 			return;
-		} 
+		} else {
+			showInputError();
+		}
 	}
 
 	// 댓글 수정
@@ -137,6 +143,8 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 			deletePost(no);
 		} else if (menuNo == 3) {
 			return;
+		} else {
+			showInputError();
 		}
 	}
 	
@@ -152,6 +160,8 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 			deleteComment(no);
 		} else if (menuNo == 3) {
 			return;
+		} else {
+			showInputError();
 		}
 	}
 	
@@ -174,6 +184,7 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 		List<Bulletin> list = bDAO.selectKeyword(keyword);
 		for (Bulletin bulletin : list)
 			System.out.println(bulletin);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		choiceClick();
 	}
 

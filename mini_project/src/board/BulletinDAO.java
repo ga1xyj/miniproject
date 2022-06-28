@@ -25,7 +25,7 @@ public class BulletinDAO extends DAO implements BoardDAO<Bulletin> {
 	public void insert(Bulletin bulletin) {
 		try {
 			connect();
-			String sql = "INSERT INTO bulletin (board_number, id, title, content) VALUES (bb_seq.nextval, ?, ?, ?)";
+			String sql = "INSERT INTO bulletin (b_number, board_number, id, title, content) VALUES (bb_seq.nextval, (SELECT NVL(MAX(board_number)+1,1) FROM bulletin), ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, LoginSystem.getLoginInfo().getId());
 			pstmt.setString(2, bulletin.getTitle());

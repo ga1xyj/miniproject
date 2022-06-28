@@ -56,11 +56,11 @@ public class NoticeManagement extends Management implements ManagementSystem<Not
 
 	// 리스트 출력
 	public void printAll() {
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		List<Notice> list = nDAO.selectAll();
 		for (Notice notice : list) {
 			System.out.println(notice);
 		}
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		// 선택한 글만 출력
 		choiceClick();
 	}
@@ -70,8 +70,8 @@ public class NoticeManagement extends Management implements ManagementSystem<Not
 		// 클릭, 뒤로가기 선택
 		int boardNumber = inputNumber();
 		Notice notice = nDAO.selectOne(boardNumber);
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		System.out.println(notice);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		// 수정, 삭제 선택
 		if(LoginSystem.getLoginInfo().getRole()==1) {
 		choiceOption(boardNumber);
@@ -80,18 +80,20 @@ public class NoticeManagement extends Management implements ManagementSystem<Not
 
 	// 클릭, 취소 선택
 	public void choiceClick() {
-		System.out.println("[1.클릭 2.뒤로가기]");
+		System.out.println("[1.선택 2.메뉴]");
 		int menuNo = menuSelect();
 		if (menuNo == 1) {
 			printOne();
 		} else if (menuNo == 2) {
 			return;
+		}else {
+			showInputError();
 		}
 	}
 
 	// 수정, 삭제 선택
 	public void choiceOption(int no) {
-		System.out.println("[1.수정 2.삭제 3.취소]");
+		System.out.println("[1.수정 2.삭제 3.메뉴]");
 		int menuNo = menuSelect();
 		if (menuNo == 1) {
 			// 수정
@@ -101,6 +103,8 @@ public class NoticeManagement extends Management implements ManagementSystem<Not
 			deletePost(no);
 		} else if (menuNo == 3) {
 			return;
+		}else {
+			showInputError();
 		}
 	}
 
@@ -114,6 +118,7 @@ public class NoticeManagement extends Management implements ManagementSystem<Not
 		List<Notice> list = nDAO.selectKeyword(keyword);
 		for (Notice notice : list)
 			System.out.println(notice);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		choiceClick();
 	}
 

@@ -16,17 +16,17 @@ public class Notice {
 	
 	@Override 
 	public String toString() {
-		return boardNumber + "|" + title + " " + boardDate + nullContent() + "\n" +line();
+		return line() + boardNumber + "|" + title + " " + boardDate + nullContent();
 	}
 	
 	private String nullContent() {
 		if(content == null) {
 			return "";
 		}else 
-			return "\n" + content;
+			return "\n\n" + content;
 	}
 	
 	public String line() {
-		return "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
+		return "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n";
 	}
 }

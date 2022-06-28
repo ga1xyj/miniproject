@@ -16,18 +16,6 @@ public class BulletinCommentDAO extends DAO implements CommentDAO<BulletinCommen
 		}
 		return bulletinCDAO;
 	}
-	public void initSequence() {
-		try {
-			connect();
-			String sql = "ALTER SEQUENCE bc_seq RESTART WITH 1 WHERE board_number";
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disconnect();
-		}
-	}
 
 	@Override
 	public void insert(BulletinComment bulletinComment) {
@@ -120,7 +108,7 @@ public class BulletinCommentDAO extends DAO implements CommentDAO<BulletinCommen
 		return list;
 	}
 	
-	//내 아이디로 쓴 글 출력
+	//내 아이디로 쓴 댓글 출력
 	public List<BulletinComment> selectAll(String id) {
 		List<BulletinComment> list = new ArrayList<BulletinComment>();
 		try {

@@ -24,7 +24,7 @@ public class NoticeDAO extends DAO implements BoardDAO<Notice>{
 	public void insert(Notice notice) {
 		try {
 			connect();
-			String sql = "INSERT INTO notice (board_number, title, content) VALUES (notice_seq.nextval, ?, ?)";
+			String sql = "INSERT INTO notice (b_number, board_number, title, content) VALUES (notice_seq.nextval, (SELECT NVL(MAX(board_number)+1,1) FROM notice), ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, notice.getTitle());
 			pstmt.setString(2, notice.getContent());

@@ -16,7 +16,7 @@ public class Bulletin {
 	
 	@Override
 	public String toString() {
-		return boardNumber + "|" + title + "\n" + content + "\n" + boardDate + " | " + id() + "\n" + line();
+		return line() + boardNumber + "|" + title + content + "\n" + boardDate + " | " + id();
 	}
 	
 	private String id() {
@@ -24,6 +24,6 @@ public class Bulletin {
 	}
 	
 	private String line() {
-		return "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
+		return "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n";
 	}
 }

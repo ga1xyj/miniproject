@@ -47,20 +47,20 @@ public class MyPageManagement extends Management {
 	
 	public void myBoard() {
 		System.out.println("[자유게시판]");
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		List<Bulletin> list = bDAO.selectAll(LoginSystem.getLoginInfo().getId());
 		for (Bulletin bulletin : list) {
 			System.out.println(bulletin);
 		}
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
 	
 	public void myComment() {
 		System.out.println("[자유게시판 댓글]");
-		System.out.println("------------------------------");
 		List<BulletinComment> list = bcDAO.selectAll(LoginSystem.getLoginInfo().getId());
 		for (BulletinComment bulletinComment : list) {
 			System.out.println(bulletinComment);
 		}
+		System.out.println("---------------------------------------");
 	}
 	
 }

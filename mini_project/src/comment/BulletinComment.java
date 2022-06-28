@@ -18,10 +18,10 @@ public class BulletinComment {
 	private Date boardDate;
 
 	public String toString() {
-		return "익명(" + commentNumber+ ")\n" + content + "\n" + boardDate+ "\n" + line();
+		return line() + "익명(" + commentNumber+ ")\n" + content + "\n" + boardDate;
 	}
 
 	public String line() {
-		return "------------------------------";
+		return "---------------------------------------\n";
 	}
 }
