@@ -1,4 +1,4 @@
-package common;
+/*package common;
 
 import java.util.Scanner;
 
@@ -100,3 +100,4 @@ public class LoginSystem {
 	
 
 }
+*/

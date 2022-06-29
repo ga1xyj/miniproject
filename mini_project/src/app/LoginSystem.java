@@ -37,9 +37,11 @@ public class LoginSystem {
 	}
 
 	private void menuPrint() {
-		System.out.println("=========================");
-		System.out.println("| 1.로그인 2.회원가입 3.종료 |");
-		System.out.println("=========================");
+		System.out.println("============================");
+		System.out.println("        EVERYTIME        ");
+		System.out.println("============================");
+		System.out.println(" 1.로그인 2.회원가입 3.종료 ");
+		System.out.println("============================");
 	}
 
 	private int menuSelect() {

@@ -110,6 +110,7 @@ public class BulletinDAO extends DAO implements BoardDAO<Bulletin> {
 		return list;
 	}
 	
+	//마이페이지 id로 조회
 	public List<Bulletin> selectAll(String id) {
 		List<Bulletin> list = new ArrayList<Bulletin>();
 		try {
@@ -125,6 +126,32 @@ public class BulletinDAO extends DAO implements BoardDAO<Bulletin> {
 				bulletin.setTitle(rs.getString("title"));
 				bulletin.setContent(rs.getString("content"));
 				bulletin.setBoardDate(rs.getDate("board_date"));
+				list.add(bulletin);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+	
+	//마이페이지 댓글단글
+	public List<Bulletin> selectAllComment(String id) {
+		List<Bulletin> list = new ArrayList<Bulletin>();
+		try {
+			connect();
+			String sql = "SELECT DISTINCT b.board_number, b.title, b.content, b.board_date FROM bulletin_comment c JOIN bulletin b  ON b.board_number = c.board_number WHERE c.id = ? ORDER BY board_number DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Bulletin bulletin = new Bulletin();
+				bulletin.setBoardNumber(rs.getInt(1));
+				//bulletin.setId(rs.getString("id"));
+				bulletin.setTitle(rs.getString(2));
+				bulletin.setContent(rs.getString(3));
+				bulletin.setBoardDate(rs.getDate(4));
 				list.add(bulletin);
 			}
 		} catch (SQLException e) {

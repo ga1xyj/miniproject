@@ -16,12 +16,15 @@ public class Bulletin {
 	
 	@Override
 	public String toString() {
-		return line() + boardNumber + "|" + title + content + "\n" + boardDate + " | " + id();
+		return line() + boardNumber + "|" + title + "\n"+ content + "\n" + boardDate;
 	}
 	
+	/*
+	" | " + id()
 	private String id() {
 		return "익명";
 	}
+	*/
 	
 	private String line() {
 		return "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n";

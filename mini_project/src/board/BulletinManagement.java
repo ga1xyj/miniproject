@@ -30,10 +30,20 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 			}
 		}
 	}
-
+	
+	@Override
+	public void menuPrint() {
+		System.out.println("==================================");
+		System.out.println("           자유게시판            ");
+		System.out.println("==================================");
+		System.out.println(" 1.조회 2.검색 3.글쓰기 9.뒤로가기 ");
+		System.out.println("==================================");
+	}
+	
 	// 게시글 출력
 	@Override
 	public void printAll() {
+		System.out.println("[게시판]");
 		List<Bulletin> list = bDAO.selectAll();
 		for (Bulletin bulletin : list) {
 			System.out.println(bulletin);
@@ -69,7 +79,6 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 			choiceOption(boardNumber);
 		}
 		// 댓글 전체 출력
-		
 		printComment(boardNumber);
 		commentMenu(boardNumber);
 	}
@@ -103,7 +112,7 @@ public class BulletinManagement extends Management implements ManagementSystem<B
 
 	// 댓글 메뉴
 	public void commentMenu(int no) {
-		String menu = "[1.댓글 2.메뉴]";
+		String menu = "[1.댓글달기 2.메뉴]";
 		System.out.println(menu);
 		int menuNo = menuSelect();
 		if (menuNo == 1) {

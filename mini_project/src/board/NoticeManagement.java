@@ -44,18 +44,23 @@ public class NoticeManagement extends Management implements ManagementSystem<Not
 	
 	public void menuPrint(boolean role) {
 		if(role) {
-			System.out.println("==============================");
-			System.out.println("| 1.조회 2.검색 3.등록 9.뒤로가기 |");
-			System.out.println("==============================");
+			System.out.println("=================================");
+			System.out.println("            공지사항            ");
+			System.out.println("=================================");
+			System.out.println(" 1.조회 2.검색 3.등록 9.뒤로가기 ");
+			System.out.println("=================================");
 		}else {
-			System.out.println("========================");
-			System.out.println("| 1.조회 2.검색 9.뒤로가기 |");
-			System.out.println("========================");
+			System.out.println("===========================");
+			System.out.println("         공지사항         ");
+			System.out.println("===========================");
+			System.out.println(" 1.조회 2.검색 9.뒤로가기 ");
+			System.out.println("===========================");
 		}
 	}
 
 	// 리스트 출력
 	public void printAll() {
+		System.out.println("[공지]");
 		List<Notice> list = nDAO.selectAll();
 		for (Notice notice : list) {
 			System.out.println(notice);

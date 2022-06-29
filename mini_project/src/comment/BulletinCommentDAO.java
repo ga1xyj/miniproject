@@ -108,20 +108,47 @@ public class BulletinCommentDAO extends DAO implements CommentDAO<BulletinCommen
 		return list;
 	}
 	
-	//내 아이디로 쓴 댓글 출력
-	public List<BulletinComment> selectAll(String id) {
-		List<BulletinComment> list = new ArrayList<BulletinComment>();
+	
+	//댓글 출력 2
+	public BulletinComment selectOne(String id) {
+		BulletinComment bulletinComment = null;
 		try {
 			connect();
 			String sql = "SELECT * FROM bulletin_comment WHERE id = ? ORDER BY comment_number DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bulletinComment =  new BulletinComment();
+				bulletinComment.setCommentNumber(rs.getInt("comment_number"));
+				bulletinComment.setBoardNumber(rs.getInt("board_number"));
+				bulletinComment.setId(rs.getString("id"));
+				bulletinComment.setContent(rs.getString("content"));
+				bulletinComment.setBoardDate(rs.getDate("board_date"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return bulletinComment;
+	}
+	
+	
+	//내 아이디로 쓴 댓글 출력(마이페이지용)
+	public List<BulletinComment> selectAll(String id) {
+		List<BulletinComment> list = new ArrayList<BulletinComment>();
+		try {
+			connect();
+			String sql = "SELECT content, board_date FROM bulletin_comment WHERE id = ? ORDER BY comment_number DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BulletinComment bulletinComment = new BulletinComment();
-				bulletinComment.setCommentNumber(rs.getInt("comment_number"));
+				//bulletinComment.setCommentNumber(rs.getInt("comment_number"));
 				//bulletinComment.setBoardNumber(rs.getInt("board_mumber"));
-				bulletinComment.setId(rs.getString("id"));
+				//bulletinComment.setId(rs.getString("id"));
 				bulletinComment.setContent(rs.getString("content"));
 				bulletinComment.setBoardDate(rs.getDate("board_date"));
 				list.add(bulletinComment);

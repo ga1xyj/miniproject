@@ -32,9 +32,9 @@ public class Management {
 	}
 
 	protected void menuMainPrint() {
-		System.out.println("==========================================");
-		System.out.println("| 1.공지사항 2.자유게시판 3.마이페이지 9.뒤로가기 |");
-		System.out.println("==========================================");
+		System.out.println("================================================");
+		System.out.println(" 1.공지사항 2.자유게시판 3.마이페이지 9.뒤로가기 ");
+		System.out.println("================================================");
 	}
 
 	protected int menuSelect() {
@@ -56,9 +56,9 @@ public class Management {
 	}
 	
 	public void menuPrint() {
-		System.out.println("==============================");
-		System.out.println("| 1.조회 2.검색 3.등록 9.뒤로가기 |");
-		System.out.println("==============================");
+		System.out.println("=================================");
+		System.out.println(" 1.조회 2.검색 3.등록 9.뒤로가기 ");
+		System.out.println("=================================");
 	}
 	
 	public void back() {

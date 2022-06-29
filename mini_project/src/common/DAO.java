@@ -12,10 +12,10 @@ import java.util.Properties;
 
 public class DAO {
 	//Oracle DB 정보
-	private String jdbcDriver;
-	private String oracleUrl;
-	private String connectedId;
-	private String connectedPwd;
+	private String jdbcDriver="oracle.jdbc.driver.OracleDriver";
+	private String oracleUrl="jdbc:oracle:thin:@localhost:1521:xe";
+	private String connectedId="everytime";
+	private String connectedPwd="everytime";
 	
 	//공통으로 사용되는 필드 
 	protected Connection conn;
@@ -24,6 +24,7 @@ public class DAO {
 	protected ResultSet rs;
 	
 	//DB 정보를 가져오는 메소드
+	/*
 	private void dbConfig() {
 		String resource = "config/db.properties";
 		Properties properties = new Properties();
@@ -39,9 +40,11 @@ public class DAO {
 		connectedPwd = properties.getProperty("password");
 	}
 	
+	
 	public DAO() {
 		dbConfig();
 	}
+	*/
 	
 	public void connect() {
 		try {
